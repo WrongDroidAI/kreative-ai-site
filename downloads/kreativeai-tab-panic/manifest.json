@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "KreativeAI Tab Panic Button",
+  "short_name": "Tab Panic",
+  "version": "1.0.0",
+  "description": "KreativeAI — Turn browser chaos into a project plan. One click to organize all your open tabs into clean groups.",
+  "permissions": ["tabs", "tabGroups", "storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Wrong Droid Tab Panic Button",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

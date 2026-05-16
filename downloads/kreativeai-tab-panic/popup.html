@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>KreativeAI Tab Panic Button</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="brand">
+      <span class="brand-mark" aria-hidden="true">K</span>
+      <div class="brand-text">
+        <span class="brand-wordmark"><span>Kreative</span><strong>AI</strong></span>
+        <span class="brand-sub">Tab Panic Button</span>
+        <p class="brand-tagline">Turn browser chaos into a project plan.</p>
+      </div>
+    </header>
+
+    <section class="card scan-card">
+      <p class="eyebrow"><span class="num">01</span> Scan</p>
+      <div class="scan-row">
+        <div class="scan-count">
+          <span class="num" id="tabCount">0</span>
+          <small>tabs in this window</small>
+        </div>
+        <label class="pin-toggle">
+          <input type="checkbox" id="includePinned" />
+          <span>Include pinned tabs</span>
+        </label>
+      </div>
+
+      <button id="cleanBtn" class="panic-btn">
+        <span class="panic-bolt" aria-hidden="true">⚡</span>
+        <span class="panic-label">Clean My Tabs</span>
+      </button>
+
+      <p class="hook">Too many tabs open? Hit the panic button.</p>
+    </section>
+
+    <section id="statusBox" class="card status-card hidden">
+      <div id="statusMessage" class="status-message"></div>
+    </section>
+
+    <section id="resultsBox" class="card results-card hidden">
+      <p class="eyebrow"><span class="num">02</span> Groups created</p>
+      <ul id="resultsList" class="results-list"></ul>
+      <p id="resultsTotal" class="results-total"></p>
+    </section>
+
+    <section class="card workspace-card">
+      <p class="eyebrow"><span class="num">03</span> Workspace</p>
+      <div class="row">
+        <input
+          id="workspaceName"
+          type="text"
+          placeholder="Workspace name (optional)"
+          maxlength="80"
+        />
+        <button id="saveBtn" class="btn-secondary">Save</button>
+      </div>
+      <div class="row">
+        <select id="workspaceSelect" aria-label="Saved workspaces">
+          <option value="">— Saved workspaces —</option>
+        </select>
+        <button id="restoreBtn" class="btn-secondary">Restore</button>
+      </div>
+      <div class="row row-clear">
+        <button id="clearBtn" class="btn-ghost">Clear Saved Workspaces</button>
+      </div>
+    </section>
+
+    <section class="card summary-card">
+      <p class="eyebrow"><span class="num">04</span> Project summary</p>
+      <div class="summary-header">
+        <h2>Plain text. Ready to paste.</h2>
+        <button id="copyBtn" class="btn-secondary">Copy</button>
+      </div>
+      <textarea
+        id="summaryText"
+        readonly
+        spellcheck="false"
+        placeholder="Click Clean My Tabs to generate a summary here."
+      ></textarea>
+    </section>
+
+    <footer class="foot">
+      <small><strong>All data stays local.</strong> No network calls. No accounts.</small>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
