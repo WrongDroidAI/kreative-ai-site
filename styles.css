@@ -551,6 +551,7 @@ p {
   z-index: 990;
   background: rgba(6, 15, 30, 0.72);
   content: "";
+  animation: workflowBackdropIn 180ms ease both;
 }
 
 .workflow-figure:hover img,
@@ -564,7 +565,30 @@ p {
   object-fit: contain;
   border-radius: 16px;
   transform: translate(-50%, -50%);
+  animation: workflowZoomIn 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
   box-shadow: 0 24px 70px rgba(16, 48, 92, 0.22);
+}
+
+@keyframes workflowBackdropIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes workflowZoomIn {
+  from {
+    opacity: 0.35;
+    transform: translate(-50%, -50%) scale(0.58);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 .workflow-figure figcaption {
