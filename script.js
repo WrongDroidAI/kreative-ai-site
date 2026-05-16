@@ -46,36 +46,20 @@ const toolLibrary = [
       "A creative brief analyzer, landing-page rewrite, tool comparison, or coding partner for a prototype."
   },
   {
-    name: "DALL-E",
+    name: "Nano-Banana",
     category: "AI graphics",
     use:
-      "Fast concept images, visual directions, campaign roughs, product-style explorations, and prompt teaching.",
+      "This week's image generation lane for fast visual exploration, campaign roughs, and style testing.",
     sample:
       "Before-and-after prompt revisions showing how lighting, camera angle, mood, and brand language improve output."
   },
   {
-    name: "Midjourney",
+    name: "Chat Image 2",
     category: "AI graphics",
     use:
-      "Stylized image directions, moodboards, cinematic visual ideas, and high-impact art direction tests.",
+      "Conversational image generation and revision, useful for teaching prompt iteration and creative direction.",
     sample:
-      "A visual style board with prompt notes, reference logic, and brand-fit critique."
-  },
-  {
-    name: "Flux",
-    category: "AI graphics",
-    use:
-      "Photoreal and design-forward image generation, visual testing, and production-style image direction.",
-    sample:
-      "A photoreal campaign set using lens, lighting, setting, color, and subject direction."
-  },
-  {
-    name: "Seedream",
-    category: "AI graphics",
-    use:
-      "Image generation and visual exploration for campaign concepts, characters, environments, and brand scenes.",
-    sample:
-      "A controlled image series that keeps the same visual language across multiple assets."
+      "A prompt conversation that turns a rough idea into a finished visual direction."
   },
   {
     name: "Runway",
@@ -86,12 +70,12 @@ const toolLibrary = [
       "A storyboard, prompt sheet, generated clips, and notes on pacing, camera movement, and continuity."
   },
   {
-    name: "Pika",
+    name: "SeaDance 2.0",
     category: "AI video",
     use:
-      "Short motion tests, animated concepts, social content experiments, and image-to-video exploration.",
+      "This week's motion tool for AI video generation, image-to-video tests, and visual continuity experiments.",
     sample:
-      "A short-form content sequence with prompt notes and revision decisions."
+      "A prompt-to-motion breakdown for a branded short or product story."
   },
   {
     name: "Kling",
@@ -102,12 +86,28 @@ const toolLibrary = [
       "A scene progression showing how still images become a cohesive moving story."
   },
   {
-    name: "Seedance",
+    name: "Veo3",
     category: "AI video",
     use:
-      "AI motion generation, video prompt development, shot sequencing, and visual continuity tests.",
+      "High-level AI video concepting, scene generation, cinematic tests, and video storytelling exploration.",
     sample:
-      "A prompt-to-motion breakdown for a branded short or product story."
+      "A short scene test with notes on prompt, camera move, subject action, and story purpose."
+  },
+  {
+    name: "LLMs",
+    category: "Planning and prompting",
+    use:
+      "Language models for strategy, prompt design, content planning, teaching, critique, coding support, and workflow thinking.",
+    sample:
+      "A reusable prompt system that turns brand, audience, goal, and channel inputs into creative direction."
+  },
+  {
+    name: "PINOKIO",
+    category: "Local AI tools",
+    use:
+      "Local AI tool management and experimentation, useful for testing creative AI workflows beyond hosted web tools.",
+    sample:
+      "A local workflow demo showing how a tool is installed, tested, evaluated, and folded into production."
   },
   {
     name: "Photoshop",
@@ -163,7 +163,7 @@ const answers = [
       "Start with What I Do for the big picture, Tools for the platforms and workflows, Proof for sample categories, then Contact if you want a project, lesson, or creative system built."
   },
   {
-    keywords: ["tools", "tool", "recommend", "chatgpt", "claude", "dall", "midjourney", "flux", "runway", "pika", "kling", "seedream", "seedance", "photoshop", "canva"],
+    keywords: ["tools", "tool", "recommend", "chatgpt", "claude", "nano-banana", "nano banana", "chat image", "seadance", "sea dance", "veo3", "runway", "kling", "llm", "pinokio", "photoshop", "canva"],
     response: () =>
       `The current tool set includes ${toolLibrary.map((tool) => tool.name).join(", ")}. Use the dropdown above for details, and tell me which tools should be added or removed.`
   },
