@@ -9,6 +9,8 @@ const toolTabs = document.querySelectorAll("[data-tool-panel]");
 const toolPanels = document.querySelectorAll(".tool-panel");
 const toolSelect = document.querySelector("#toolSelect");
 const toolDetail = document.querySelector("#toolDetail");
+const workflowFigure = document.querySelector(".workflow-figure");
+const workflowImage = document.querySelector(".workflow-figure img");
 
 const kreativeProfile = {
   name: "Kreative AI",
@@ -273,6 +275,124 @@ if (agentModes.length) {
       askAgent(modePrompts[mode]);
     });
   });
+}
+
+function getWorkflowTargetRect(image) {
+  const imageRatio = image.naturalWidth / image.naturalHeight;
+  const maxWidth = Math.min(window.innerWidth * 0.96, 1800);
+  const maxHeight = window.innerHeight * 0.88;
+  let width = maxWidth;
+  let height = width / imageRatio;
+
+  if (height > maxHeight) {
+    height = maxHeight;
+    width = height * imageRatio;
+  }
+
+  return {
+    height,
+    left: (window.innerWidth - width) / 2,
+    top: (window.innerHeight - height) / 2,
+    width
+  };
+}
+
+function animateWorkflowImage() {
+  if (!workflowFigure || !workflowImage || workflowFigure.classList.contains("is-zooming")) return;
+
+  const start = workflowImage.getBoundingClientRect();
+  const target = getWorkflowTargetRect(workflowImage);
+  const backdrop = document.createElement("div");
+  const clone = workflowImage.cloneNode(true);
+  let isClosing = false;
+
+  backdrop.className = "workflow-zoom-backdrop";
+  clone.className = "workflow-zoom-clone";
+
+  Object.assign(clone.style, {
+    height: `${start.height}px`,
+    left: `${start.left}px`,
+    top: `${start.top}px`,
+    width: `${start.width}px`
+  });
+
+  document.body.append(backdrop, clone);
+  workflowFigure.classList.add("is-zooming");
+
+  backdrop.animate([{ opacity: 0 }, { opacity: 1 }], {
+    duration: 180,
+    easing: "ease-out",
+    fill: "forwards"
+  });
+
+  clone.animate(
+    [
+      {
+        height: `${start.height}px`,
+        left: `${start.left}px`,
+        top: `${start.top}px`,
+        width: `${start.width}px`
+      },
+      {
+        height: `${target.height}px`,
+        left: `${target.left}px`,
+        top: `${target.top}px`,
+        width: `${target.width}px`
+      }
+    ],
+    {
+      duration: 360,
+      easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+      fill: "forwards"
+    }
+  );
+
+  function closeWorkflowImage() {
+    if (isClosing) return;
+    isClosing = true;
+
+    backdrop.animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration: 160,
+      easing: "ease-in",
+      fill: "forwards"
+    });
+
+    const closeAnimation = clone.animate(
+      [
+        {
+          height: `${target.height}px`,
+          left: `${target.left}px`,
+          top: `${target.top}px`,
+          width: `${target.width}px`
+        },
+        {
+          height: `${start.height}px`,
+          left: `${start.left}px`,
+          top: `${start.top}px`,
+          width: `${start.width}px`
+        }
+      ],
+      {
+        duration: 230,
+        easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+        fill: "forwards"
+      }
+    );
+
+    closeAnimation.onfinish = () => {
+      backdrop.remove();
+      clone.remove();
+      workflowFigure.classList.remove("is-zooming");
+    };
+  }
+
+  clone.addEventListener("mouseleave", closeWorkflowImage);
+  clone.addEventListener("click", closeWorkflowImage);
+  backdrop.addEventListener("click", closeWorkflowImage);
+}
+
+if (workflowFigure && workflowImage) {
+  workflowImage.addEventListener("mouseenter", animateWorkflowImage);
 }
 
 function renderToolDetail(toolName) {
