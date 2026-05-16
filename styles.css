@@ -87,11 +87,18 @@ textarea {
   display: inline-flex;
   min-height: 42px;
   align-items: center;
+  gap: 7px;
 }
 
 .site-nav a:hover,
 .site-nav a:focus-visible {
   color: var(--blue);
+}
+
+.nav-number {
+  color: var(--blue);
+  font-size: 0.72rem;
+  font-weight: 950;
 }
 
 .nav-item {
@@ -176,12 +183,25 @@ textarea {
 }
 
 .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin: 0 0 12px;
   color: var(--blue);
   font-size: 0.78rem;
   font-weight: 950;
   letter-spacing: 0;
   text-transform: uppercase;
+}
+
+.eyebrow span {
+  display: inline-grid;
+  place-items: center;
+  min-width: 30px;
+  min-height: 24px;
+  border: 1px solid rgba(11, 99, 246, 0.22);
+  border-radius: 999px;
+  background: #ffffff;
 }
 
 h1,
