@@ -4,8 +4,152 @@ const chatInput = document.querySelector("#chatInput");
 const bookingForm = document.querySelector("#bookingForm");
 const bookingStatus = document.querySelector("#bookingStatus");
 const quickPrompts = document.querySelectorAll("[data-question]");
+const agentModes = document.querySelectorAll("[data-mode]");
 const toolTabs = document.querySelectorAll("[data-tool-panel]");
 const toolPanels = document.querySelectorAll(".tool-panel");
+const toolSelect = document.querySelector("#toolSelect");
+const toolDetail = document.querySelector("#toolDetail");
+
+const kreativeProfile = {
+  name: "Kreative AI",
+  focus:
+    "AI graphics, AI video, vibe coding, teaching, branding, and visual storytelling.",
+  proof:
+    "26 years of photography experience, photography for Volkswagen and Coca-Cola, DriverGear catalog design, and video production.",
+  contact:
+    "Use the contact form for now. Add your preferred email, phone, calendar link, and follow-up rules to make this a live booking agent.",
+  dataNeeded: [
+    "Preferred contact email, phone, calendar link, and service area",
+    "Exact service names, package names, workshop formats, and pricing language",
+    "Appointment length, availability rules, cancellation language, and follow-up process",
+    "Final tool list, including which tools you teach, consult on, or use for production",
+    "Portfolio links, case studies, approved client examples, and sample descriptions",
+    "Preferred answer style for the agent: casual, corporate, technical, beginner-friendly, or sales-focused"
+  ]
+};
+
+const toolLibrary = [
+  {
+    name: "ChatGPT",
+    category: "LLM",
+    use:
+      "Strategy, ideation, writing, prompt refinement, research synthesis, teaching plans, and code collaboration.",
+    sample:
+      "A brand prompt system, workshop outline, campaign concept map, FAQ agent, or internal workflow assistant."
+  },
+  {
+    name: "Claude",
+    category: "LLM",
+    use:
+      "Long-form reasoning, content structure, document analysis, coding support, and careful critique of creative work.",
+    sample:
+      "A creative brief analyzer, landing-page rewrite, tool comparison, or coding partner for a prototype."
+  },
+  {
+    name: "DALL-E",
+    category: "AI graphics",
+    use:
+      "Fast concept images, visual directions, campaign roughs, product-style explorations, and prompt teaching.",
+    sample:
+      "Before-and-after prompt revisions showing how lighting, camera angle, mood, and brand language improve output."
+  },
+  {
+    name: "Midjourney",
+    category: "AI graphics",
+    use:
+      "Stylized image directions, moodboards, cinematic visual ideas, and high-impact art direction tests.",
+    sample:
+      "A visual style board with prompt notes, reference logic, and brand-fit critique."
+  },
+  {
+    name: "Flux",
+    category: "AI graphics",
+    use:
+      "Photoreal and design-forward image generation, visual testing, and production-style image direction.",
+    sample:
+      "A photoreal campaign set using lens, lighting, setting, color, and subject direction."
+  },
+  {
+    name: "Seedream",
+    category: "AI graphics",
+    use:
+      "Image generation and visual exploration for campaign concepts, characters, environments, and brand scenes.",
+    sample:
+      "A controlled image series that keeps the same visual language across multiple assets."
+  },
+  {
+    name: "Runway",
+    category: "AI video",
+    use:
+      "AI video generation, motion concepts, scene tests, social video, and storyboard-to-motion workflows.",
+    sample:
+      "A storyboard, prompt sheet, generated clips, and notes on pacing, camera movement, and continuity."
+  },
+  {
+    name: "Pika",
+    category: "AI video",
+    use:
+      "Short motion tests, animated concepts, social content experiments, and image-to-video exploration.",
+    sample:
+      "A short-form content sequence with prompt notes and revision decisions."
+  },
+  {
+    name: "Kling",
+    category: "AI video",
+    use:
+      "Cinematic movement, image-to-video tests, character motion, and visual storytelling sequences.",
+    sample:
+      "A scene progression showing how still images become a cohesive moving story."
+  },
+  {
+    name: "Seedance",
+    category: "AI video",
+    use:
+      "AI motion generation, video prompt development, shot sequencing, and visual continuity tests.",
+    sample:
+      "A prompt-to-motion breakdown for a branded short or product story."
+  },
+  {
+    name: "Photoshop",
+    category: "Post-production",
+    use:
+      "Image cleanup, compositing, retouching, color correction, layout prep, and finishing AI-generated assets.",
+    sample:
+      "AI image cleanup with notes on what was generated, corrected, extended, or composited."
+  },
+  {
+    name: "Canva",
+    category: "Design",
+    use:
+      "Fast layouts, social posts, decks, teaching materials, brand kits, and client-friendly design handoffs.",
+    sample:
+      "A reusable brand/social template set built from AI-generated visuals and campaign copy."
+  },
+  {
+    name: "HTML, CSS, JavaScript",
+    category: "Vibe coding",
+    use:
+      "Landing pages, interactive prototypes, prompt tools, AI helper interfaces, forms, and lightweight apps.",
+    sample:
+      "A working web prototype like this site, a prompt generator, or a visual-brief builder."
+  },
+  {
+    name: "Python",
+    category: "Automation",
+    use:
+      "Data cleanup, asset organization, batch workflows, file processing, and AI-assisted production tasks.",
+    sample:
+      "An automation that organizes image prompts, filenames, metadata, or production notes."
+  },
+  {
+    name: "APIs and CMS workflows",
+    category: "Systems",
+    use:
+      "Connecting forms, content systems, AI outputs, personalization logic, and repeatable creative pipelines.",
+    sample:
+      "A content workflow showing how prompts, assets, review criteria, and publishing handoffs connect."
+  }
+];
 
 const answers = [
   {
@@ -14,9 +158,14 @@ const answers = [
       "Kreative AI helps with AI graphics, AI video, vibe coding, teaching, branding, and visual storytelling. The work is grounded in 26 years of photography experience, commercial brand work, catalog design, and video production."
   },
   {
-    keywords: ["tools", "chatgpt", "dall", "flux", "runway", "seedream", "seedance", "photoshop"],
+    keywords: ["visitor guide", "guide me", "where should i start"],
     response:
-      "The current tool set includes ChatGPT and LLMs, DALL-E, Flux, Seedream, Runway, Seedance, Photoshop-style post-production, HTML, CSS, JavaScript, Python, REST APIs, CMS thinking, and personalization workflows. What other tools should I add?"
+      "Start with What I Do for the big picture, Tools for the platforms and workflows, Proof for sample categories, then Contact if you want a project, lesson, or creative system built."
+  },
+  {
+    keywords: ["tools", "tool", "recommend", "chatgpt", "claude", "dall", "midjourney", "flux", "runway", "pika", "kling", "seedream", "seedance", "photoshop", "canva"],
+    response: () =>
+      `The current tool set includes ${toolLibrary.map((tool) => tool.name).join(", ")}. Use the dropdown above for details, and tell me which tools should be added or removed.`
   },
   {
     keywords: ["vibe", "coding", "app", "website", "prototype", "build"],
@@ -40,8 +189,13 @@ const answers = [
   },
   {
     keywords: ["book", "appointment", "schedule", "call", "meet"],
-    response:
-      "Use the form below to start a project, request a session, or tell me which AI tools and sample types should be added to the site."
+    response: () =>
+      `${kreativeProfile.contact} I still need the final booking link, appointment length, available days, and the exact message you want people to receive after they request a session.`
+  },
+  {
+    keywords: ["data", "dataset", "information", "need", "missing", "agent"],
+    response: () =>
+      `To answer accurately, I need: ${kreativeProfile.dataNeeded.join("; ")}.`
   },
   {
     keywords: ["beginner", "new", "start", "scared", "confused"],
@@ -60,15 +214,21 @@ function addMessage(text, sender = "agent") {
 
 function getAgentResponse(question) {
   const normalized = question.toLowerCase();
+  const directTool = toolLibrary.find((tool) => normalized.includes(tool.name.toLowerCase()));
+
+  if (directTool) {
+    return `${directTool.name}: ${directTool.use} A strong sample would be: ${directTool.sample}`;
+  }
+
   const match = answers.find((item) =>
     item.keywords.some((keyword) => normalized.includes(keyword))
   );
 
   if (match) {
-    return match.response;
+    return typeof match.response === "function" ? match.response() : match.response;
   }
 
-  return "Great question. Kreative AI focuses on AI graphics, video, coding, teaching, branding, and visual storytelling. If there is a tool or sample you want represented, tell me its name and what you use it for.";
+  return "Great question. I can answer best about AI graphics, video, coding, teaching, branding, tools, portfolio samples, and booking. If you want this live agent to answer that topic accurately, add the approved fact, link, or policy to the site knowledge base.";
 }
 
 function askAgent(question) {
@@ -91,6 +251,50 @@ quickPrompts.forEach((button) => {
   button.addEventListener("click", () => {
     askAgent(button.dataset.question);
   });
+});
+
+agentModes.forEach((button) => {
+  button.addEventListener("click", () => {
+    const mode = button.dataset.mode;
+    const modePrompts = {
+      guide: "Give me the visitor guide.",
+      tool: "Recommend which AI tool I should use.",
+      booking: "Can you help me book?",
+      portfolio: "What samples should I add?"
+    };
+
+    agentModes.forEach((modeButton) => modeButton.classList.remove("is-active"));
+    button.classList.add("is-active");
+    askAgent(modePrompts[mode]);
+  });
+});
+
+function renderToolDetail(toolName) {
+  const selectedTool = toolLibrary.find((tool) => tool.name === toolName);
+
+  if (!selectedTool) {
+    toolDetail.innerHTML = "<p>Select a tool to see the kind of work, prompts, and outcomes it supports.</p>";
+    return;
+  }
+
+  toolDetail.innerHTML = `
+    <span>${selectedTool.category}</span>
+    <h3>${selectedTool.name}</h3>
+    <p>${selectedTool.use}</p>
+    <strong>Sample to show:</strong>
+    <p>${selectedTool.sample}</p>
+  `;
+}
+
+toolLibrary.forEach((tool) => {
+  const option = document.createElement("option");
+  option.value = tool.name;
+  option.textContent = `${tool.name} - ${tool.category}`;
+  toolSelect.appendChild(option);
+});
+
+toolSelect.addEventListener("change", () => {
+  renderToolDetail(toolSelect.value);
 });
 
 toolTabs.forEach((button) => {

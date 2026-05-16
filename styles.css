@@ -381,6 +381,64 @@ p {
   border-color: var(--blue);
 }
 
+.tool-select-label {
+  display: grid;
+  gap: 10px;
+  max-width: 520px;
+  margin-top: 22px;
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.tool-select,
+.tool-detail {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.tool-select {
+  min-height: 48px;
+  padding: 12px 14px;
+  color: var(--text);
+}
+
+.tool-detail {
+  max-width: 980px;
+  min-height: 132px;
+  margin-top: 14px;
+  padding: 20px;
+  box-shadow: 0 12px 32px rgba(16, 48, 92, 0.07);
+}
+
+.tool-detail span {
+  display: inline-flex;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: var(--blue);
+  background: var(--blue-3);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.tool-detail h3 {
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.tool-detail strong {
+  display: block;
+  margin: 14px 0 6px;
+  color: var(--ink);
+}
+
+.tool-detail p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
 .tool-panel {
   display: none;
   max-width: 980px;
@@ -512,6 +570,14 @@ p {
   padding: 14px 20px 0;
 }
 
+.agent-modes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 14px 20px 0;
+}
+
+.agent-modes button,
 .quick-prompts button {
   min-height: 36px;
   border: 1px solid var(--line);
@@ -521,6 +587,20 @@ p {
   background: var(--blue-3);
   cursor: pointer;
   font-weight: 900;
+}
+
+.agent-modes button {
+  border-radius: 8px;
+  color: var(--text);
+  background: #ffffff;
+}
+
+.agent-modes button.is-active,
+.agent-modes button:hover,
+.agent-modes button:focus-visible {
+  color: #ffffff;
+  background: var(--blue);
+  border-color: var(--blue);
 }
 
 .chat-form {
@@ -593,6 +673,27 @@ p {
   font-weight: 900;
 }
 
+.agent-data {
+  border-top: 1px solid var(--line);
+  padding: 0 20px 18px;
+}
+
+.agent-data summary {
+  min-height: 48px;
+  padding-top: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.agent-data ul {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
 .site-footer {
   display: flex;
   align-items: center;
@@ -663,6 +764,7 @@ p {
 
   .quick-read,
   .proof-grid,
+  .agent-modes,
   .form-row.two-col,
   .chat-form,
   .site-footer {

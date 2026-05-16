@@ -30,8 +30,9 @@
           <a href="#tools">Tools</a>
           <div class="nav-panel" aria-label="Tools menu">
             <a href="#tools">ChatGPT and LLM workflows</a>
-            <a href="#tools">DALL-E, Flux, Seedream, Runway, Seedance</a>
-            <a href="#tools">Photoshop, HTML, CSS, JavaScript, Python</a>
+            <a href="#tools">DALL-E, Midjourney, Flux, Seedream</a>
+            <a href="#tools">Runway, Pika, Kling, Seedance</a>
+            <a href="#tools">Photoshop, Canva, HTML, CSS, JavaScript, Python</a>
             <a href="#tools">APIs, CMS, personalization, automation</a>
           </div>
         </div>
@@ -153,13 +154,23 @@
           <button class="tool-tab" type="button" data-tool-panel="systems">Systems</button>
         </div>
 
+        <label class="tool-select-label" for="toolSelect">
+          Choose a tool to see how I use it
+          <select id="toolSelect" class="tool-select">
+            <option value="">Select a tool</option>
+          </select>
+        </label>
+        <div id="toolDetail" class="tool-detail" aria-live="polite">
+          <p>Select a tool to see the kind of work, prompts, and outcomes it supports.</p>
+        </div>
+
         <div class="tool-panel is-active" id="tool-image">
           <h3>AI graphics and image generation</h3>
-          <p>DALL-E, Flux, Seedream, image prompting, reference images, style controls, composition, lighting, color, and post-production cleanup.</p>
+          <p>DALL-E, Midjourney, Flux, Seedream, image prompting, reference images, style controls, composition, lighting, color, and post-production cleanup.</p>
         </div>
         <div class="tool-panel" id="tool-video">
           <h3>AI video and motion direction</h3>
-          <p>Runway, Seedance, cinematic prompting, shot sequencing, visual continuity, social video concepts, and storyboard-to-motion workflows.</p>
+          <p>Runway, Pika, Kling, Seedance, cinematic prompting, shot sequencing, visual continuity, social video concepts, and storyboard-to-motion workflows.</p>
         </div>
         <div class="tool-panel" id="tool-code">
           <h3>Vibe coding and web builds</h3>
@@ -205,6 +216,10 @@
         <div class="section-heading">
           <p class="eyebrow">AI agent</p>
           <h2 id="agent-title">Ask what I do, what tools I know, or what samples should come next.</h2>
+          <p>
+            This agent is set up to answer from a structured Kreative AI knowledge base. The next step is adding
+            your exact offers, booking rules, portfolio links, pricing language, and tool list so the answers are accurate.
+          </p>
         </div>
         <div class="chat-panel" aria-label="Kreative AI question assistant">
           <div class="chat-header">
@@ -215,17 +230,35 @@
             <span class="status-pill">Online</span>
           </div>
           <div id="chatMessages" class="chat-messages" aria-live="polite"></div>
+          <div class="agent-modes" aria-label="Agent modes">
+            <button type="button" data-mode="guide">Visitor guide</button>
+            <button type="button" data-mode="tool">Tool recommender</button>
+            <button type="button" data-mode="booking">Booking assistant</button>
+            <button type="button" data-mode="portfolio">Portfolio curator</button>
+          </div>
           <div class="quick-prompts" aria-label="Quick questions">
             <button type="button" data-question="What do you do?">What do you do?</button>
             <button type="button" data-question="What tools do you know?">Tools?</button>
             <button type="button" data-question="What samples should I add?">Samples?</button>
             <button type="button" data-question="Can you help me book?">Contact?</button>
+            <button type="button" data-question="What information do you still need?">Agent data?</button>
           </div>
           <form id="chatForm" class="chat-form">
             <label class="sr-only" for="chatInput">Ask Kreative AI a question</label>
             <input id="chatInput" type="text" placeholder="Ask about AI graphics, video, coding, teaching, or branding..." autocomplete="off">
             <button type="submit">Send</button>
           </form>
+          <details class="agent-data">
+            <summary>Information needed to make this a live, accurate agent</summary>
+            <ul>
+              <li>Your preferred contact email, phone, booking link, and service area.</li>
+              <li>Your exact services, package names, workshop formats, and pricing language.</li>
+              <li>Your availability rules, appointment length, cancellation language, and follow-up process.</li>
+              <li>The final list of tools you know, plus which ones you want to teach or consult on.</li>
+              <li>Portfolio links, sample descriptions, client-approved case studies, and images you want shown.</li>
+              <li>Your preferred answer style: casual, corporate, technical, beginner-friendly, or sales-focused.</li>
+            </ul>
+          </details>
         </div>
       </section>
 
