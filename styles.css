@@ -536,18 +536,34 @@ p {
   display: block;
   width: 100%;
   border-radius: 16px 16px 0 0;
-  transition: transform 220ms ease, box-shadow 220ms ease;
-  transform-origin: center;
+  transition: box-shadow 220ms ease;
 }
 
 .workflow-figure:hover,
 .workflow-figure:focus-within {
-  z-index: 12;
+  z-index: 1000;
+}
+
+.workflow-figure:hover::before,
+.workflow-figure:focus-within::before {
+  position: fixed;
+  inset: 0;
+  z-index: 990;
+  background: rgba(6, 15, 30, 0.72);
+  content: "";
 }
 
 .workflow-figure:hover img,
 .workflow-figure:focus-within img {
-  transform: scale(2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1001;
+  width: min(96vw, 1800px);
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 16px;
+  transform: translate(-50%, -50%);
   box-shadow: 0 24px 70px rgba(16, 48, 92, 0.22);
 }
 
