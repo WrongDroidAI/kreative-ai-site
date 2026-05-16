@@ -549,6 +549,7 @@ p {
 .workflow-zoom-clone {
   position: fixed;
   z-index: 1001;
+  background: #050b14;
   object-fit: contain;
   border-radius: 16px;
   box-shadow: 0 24px 70px rgba(16, 48, 92, 0.22);

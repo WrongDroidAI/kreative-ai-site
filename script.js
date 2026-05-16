@@ -11,6 +11,7 @@ const toolSelect = document.querySelector("#toolSelect");
 const toolDetail = document.querySelector("#toolDetail");
 const workflowFigure = document.querySelector(".workflow-figure");
 const workflowImage = document.querySelector(".workflow-figure img");
+const workflowVideoSource = "assets/workflow-hover-video.mp4";
 
 const kreativeProfile = {
   name: "Kreative AI",
@@ -303,11 +304,16 @@ function animateWorkflowImage() {
   const start = workflowImage.getBoundingClientRect();
   const target = getWorkflowTargetRect(workflowImage);
   const backdrop = document.createElement("div");
-  const clone = workflowImage.cloneNode(true);
+  const clone = document.createElement("video");
   let isClosing = false;
 
   backdrop.className = "workflow-zoom-backdrop";
   clone.className = "workflow-zoom-clone";
+  clone.src = workflowVideoSource;
+  clone.autoplay = true;
+  clone.muted = true;
+  clone.loop = true;
+  clone.playsInline = true;
 
   Object.assign(clone.style, {
     height: `${start.height}px`,
@@ -318,6 +324,7 @@ function animateWorkflowImage() {
 
   document.body.append(backdrop, clone);
   workflowFigure.classList.add("is-zooming");
+  clone.play().catch(() => {});
 
   backdrop.animate([{ opacity: 0 }, { opacity: 1 }], {
     duration: 180,
@@ -380,6 +387,7 @@ function animateWorkflowImage() {
     );
 
     closeAnimation.onfinish = () => {
+      clone.pause();
       backdrop.remove();
       clone.remove();
       workflowFigure.classList.remove("is-zooming");
