@@ -12,7 +12,6 @@ const toolDetail = document.querySelector("#toolDetail");
 const workflowFigure = document.querySelector(".workflow-figure");
 const workflowImage = document.querySelector(".workflow-figure img");
 const workflowVideoSource = "assets/workflow-hover-video.mp4";
-const proofVideoTrigger = document.querySelector(".proof-video-trigger");
 
 const kreativeProfile = {
   name: "Kreative AI",
@@ -443,17 +442,6 @@ toolTabs.forEach((button) => {
     document.querySelector(`#${panelId}`).classList.add("is-active");
   });
 });
-
-if (proofVideoTrigger) {
-  proofVideoTrigger.addEventListener("click", () => {
-    const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube.com/embed/${proofVideoTrigger.dataset.videoId}?autoplay=1&rel=0`;
-    iframe.title = "Kreative AI video sample";
-    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-    iframe.allowFullscreen = true;
-    proofVideoTrigger.replaceWith(iframe);
-  });
-}
 
 bookingForm.addEventListener("submit", (event) => {
   event.preventDefault();
