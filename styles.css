@@ -546,9 +546,22 @@ p {
 
 .sample-link {
   display: inline-flex;
-  margin: 0 20px 22px;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 12px;
   color: var(--blue);
+  background: #ffffff;
   font-weight: 950;
+}
+
+.sample-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 20px 22px;
 }
 
 .proof-video-frame {
