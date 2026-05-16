@@ -478,17 +478,24 @@ p {
 }
 
 .proof-grid article {
-  min-height: 244px;
-  padding: 24px;
+  overflow: hidden;
+  min-height: 360px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: #ffffff;
   box-shadow: 0 12px 32px rgba(16, 48, 92, 0.07);
 }
 
+.proof-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
 .proof-grid span {
   display: inline-flex;
-  margin-bottom: 22px;
+  margin: 18px 20px 18px;
   border-radius: 999px;
   padding: 6px 10px;
   color: var(--blue);
@@ -496,6 +503,15 @@ p {
   font-size: 0.78rem;
   font-weight: 950;
   text-transform: uppercase;
+}
+
+.proof-grid h3,
+.proof-grid p {
+  padding-inline: 20px;
+}
+
+.proof-grid p {
+  padding-bottom: 22px;
 }
 
 .agent-section {
