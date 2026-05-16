@@ -205,6 +205,8 @@ const answers = [
 ];
 
 function addMessage(text, sender = "agent") {
+  if (!chatMessages) return;
+
   const message = document.createElement("div");
   message.className = `message ${sender}`;
   message.textContent = text;
@@ -241,11 +243,13 @@ function askAgent(question) {
   }, 280);
 }
 
-chatForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  askAgent(chatInput.value);
-  chatInput.value = "";
-});
+if (chatForm && chatInput) {
+  chatForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    askAgent(chatInput.value);
+    chatInput.value = "";
+  });
+}
 
 quickPrompts.forEach((button) => {
   button.addEventListener("click", () => {
@@ -253,21 +257,23 @@ quickPrompts.forEach((button) => {
   });
 });
 
-agentModes.forEach((button) => {
-  button.addEventListener("click", () => {
-    const mode = button.dataset.mode;
-    const modePrompts = {
-      guide: "Give me the visitor guide.",
-      tool: "Recommend which AI tool I should use.",
-      booking: "Can you help me book?",
-      portfolio: "What samples should I add?"
-    };
+if (agentModes.length) {
+  agentModes.forEach((button) => {
+    button.addEventListener("click", () => {
+      const mode = button.dataset.mode;
+      const modePrompts = {
+        guide: "Give me the visitor guide.",
+        tool: "Recommend which AI tool I should use.",
+        booking: "Can you help me book?",
+        portfolio: "What samples should I add?"
+      };
 
-    agentModes.forEach((modeButton) => modeButton.classList.remove("is-active"));
-    button.classList.add("is-active");
-    askAgent(modePrompts[mode]);
+      agentModes.forEach((modeButton) => modeButton.classList.remove("is-active"));
+      button.classList.add("is-active");
+      askAgent(modePrompts[mode]);
+    });
   });
-});
+}
 
 function renderToolDetail(toolName) {
   const selectedTool = toolLibrary.find((tool) => tool.name === toolName);
@@ -324,4 +330,6 @@ bookingForm.addEventListener("submit", (event) => {
   addMessage("I saved your request. A live version can send this to email, CRM, calendar, CMS, or an automation workflow.");
 });
 
-addMessage("Hi, I'm the Kreative AI helper. Ask me about AI graphics, video, coding, teaching, branding, tools, samples, or what to add next.");
+if (chatMessages) {
+  addMessage("Hi, I'm the Kreative AI helper. Ask me about AI graphics, video, coding, teaching, branding, tools, samples, or what to add next.");
+}

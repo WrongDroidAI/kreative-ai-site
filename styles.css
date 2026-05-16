@@ -516,10 +516,46 @@ p {
 
 .agent-section {
   display: grid;
-  grid-template-columns: minmax(0, 0.88fr) minmax(340px, 0.78fr);
+  grid-template-columns: minmax(0, 0.66fr) minmax(420px, 1fr);
   gap: clamp(28px, 5vw, 72px);
   align-items: start;
   background: #ffffff;
+}
+
+.workflow-figure {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.workflow-figure img {
+  display: block;
+  width: 100%;
+  border-radius: 16px 16px 0 0;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  transform-origin: center;
+}
+
+.workflow-figure:hover,
+.workflow-figure:focus-within {
+  z-index: 12;
+}
+
+.workflow-figure:hover img,
+.workflow-figure:focus-within img {
+  transform: scale(1.18);
+  box-shadow: 0 24px 70px rgba(16, 48, 92, 0.22);
+}
+
+.workflow-figure figcaption {
+  padding: 12px 16px 14px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 850;
 }
 
 .chat-panel,
