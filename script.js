@@ -11,7 +11,7 @@ const toolSelect = document.querySelector("#toolSelect");
 const toolDetail = document.querySelector("#toolDetail");
 const workflowFigure = document.querySelector(".workflow-figure");
 const workflowImage = document.querySelector(".workflow-figure img");
-const workflowVideoSource = "assets/workflow-hover-video.mp4";
+const workflowVideoSource = "assets/workflow-hover-video.mp4?v=workflow-2";
 
 const kreativeProfile = {
   name: "Kreative AI",
