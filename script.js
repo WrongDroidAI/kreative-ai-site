@@ -12,7 +12,6 @@ const toolDetail = document.querySelector("#toolDetail");
 const workflowFigure = document.querySelector(".workflow-figure");
 const workflowImage = document.querySelector(".workflow-figure img");
 const workflowVideoSource = "assets/workflow-hover-video.mp4";
-const proofVideoTrigger = document.querySelector(".proof-video-trigger");
 
 const kreativeProfile = {
   name: "Kreative AI",
@@ -402,13 +401,6 @@ function animateWorkflowImage() {
 
 if (workflowFigure && workflowImage) {
   workflowImage.addEventListener("mouseenter", animateWorkflowImage);
-}
-
-if (proofVideoTrigger) {
-  proofVideoTrigger.addEventListener("click", (event) => {
-    event.preventDefault();
-    window.location.href = proofVideoTrigger.href;
-  });
 }
 
 function renderToolDetail(toolName) {
