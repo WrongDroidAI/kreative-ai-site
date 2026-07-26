@@ -14,16 +14,16 @@ const workflowImage = document.querySelector(".workflow-figure img");
 const workflowVideoSource = "assets/workflow-hover-video.mp4?v=workflow-2";
 
 const kreativeProfile = {
-  name: "Kreative AI",
+  name: "Kreative AI Your AI",
   focus:
-    "AI graphics, AI video, vibe coding, teaching, branding, and visual storytelling.",
+    "A personal, proactive AI that learns how each customer thinks, grows with their goals, and helps them use AI to improve and stay relevant.",
   proof:
     "26 years of photography experience, photography for Volkswagen and Coca-Cola, DriverGear catalog design, and video production.",
   contact:
-    "Use the contact form for now. Add your preferred email, phone, calendar link, and follow-up rules to make this a live booking agent.",
+    "Use the Contact Us form to start a conversation about Kreative AI Your AI, availability, and next steps.",
   dataNeeded: [
     "Preferred contact email, phone, calendar link, and service area",
-    "Exact service names, package names, workshop formats, and pricing language",
+    "Final onboarding flow and early-access availability",
     "Appointment length, availability rules, cancellation language, and follow-up process",
     "Final tool list, including which tools you teach, consult on, or use for production",
     "Portfolio links, case studies, approved client examples, and sample descriptions",
@@ -156,6 +156,21 @@ const toolLibrary = [
 
 const answers = [
   {
+    keywords: ["your ai", "my ai", "personal ai", "main product", "remember", "memory"],
+    response:
+      "Kreative AI Your AI is a personal AI built around one customer. It begins with a thoughtful interview, learns the customer's goals and preferences, remembers what matters, and becomes more useful over time."
+  },
+  {
+    keywords: ["proactive", "reach out", "notification", "email", "text", "sms", "phone", "voice"],
+    response:
+      "With permission, Your AI can stay active while the customer is away and reach out through the app, email, notifications, text messages, or clearly identified AI voice calls. The customer controls channels, frequency, topics, quiet hours, and opt-out."
+  },
+  {
+    keywords: ["privacy", "private", "secure", "data", "training", "control"],
+    response:
+      "Your information belongs to you. The product is being designed to protect customer information, never sell it, never use it to train shared AI models, and never share it without permission. Customers also control what the AI remembers and how it reaches them."
+  },
+  {
     keywords: ["what do you do", "learn", "teach", "class", "session"],
     response:
       "Kreative AI helps with AI graphics, AI video, vibe coding, teaching, branding, and visual storytelling. The work is grounded in 26 years of photography experience, commercial brand work, catalog design, and video production."
@@ -163,7 +178,7 @@ const answers = [
   {
     keywords: ["visitor guide", "guide me", "where should i start"],
     response:
-      "Start with What I Do for the big picture, Tools for the platforms and workflows, Proof for sample categories, then Contact if you want a project, lesson, or creative system built."
+      "Start with Your AI for the product promise, How It Works for the relationship, Your Control for privacy and outreach choices, then Contact Us to begin a conversation."
   },
   {
     keywords: ["tools", "tool", "recommend", "chatgpt", "claude", "nano-banana", "nano banana", "chat image", "seadance", "sea dance", "veo3", "runway", "kling", "llm", "pinokio", "photoshop", "canva"],
@@ -193,7 +208,7 @@ const answers = [
   {
     keywords: ["book", "appointment", "schedule", "call", "meet"],
     response: () =>
-      `${kreativeProfile.contact} I still need the final booking link, appointment length, available days, and the exact message you want people to receive after they request a session.`
+      kreativeProfile.contact
   },
   {
     keywords: ["data", "dataset", "information", "need", "missing", "agent"],
@@ -233,7 +248,7 @@ function getAgentResponse(question) {
     return typeof match.response === "function" ? match.response() : match.response;
   }
 
-  return "Great question. I can answer best about AI graphics, video, coding, teaching, branding, tools, portfolio samples, and booking. If you want this live agent to answer that topic accurately, add the approved fact, link, or policy to the site knowledge base.";
+  return "Great question. I can answer best about Kreative AI Your AI, how it learns, proactive support, privacy controls, creative AI work, tools, and contacting the team.";
 }
 
 function askAgent(question) {
@@ -459,5 +474,5 @@ bookingForm.addEventListener("submit", (event) => {
 });
 
 if (chatMessages) {
-  addMessage("Hi, I'm the Kreative AI helper. Ask me about AI graphics, video, coding, teaching, branding, tools, samples, or what to add next.");
+  addMessage("Hi, I'm the Kreative AI helper. Ask me about Your AI, how it learns, proactive support, privacy controls, or how to contact us.");
 }
