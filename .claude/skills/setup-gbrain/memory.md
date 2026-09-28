@@ -1,0 +1,1 @@
+../../vendor/gstack/setup-gbrain/memory.md
