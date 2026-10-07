@@ -28,6 +28,9 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Leave agent files out of the site
+        run: rm -rf .claude .superpowers .impeccable docs/superpowers CLAUDE.md AGENTS.md
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
